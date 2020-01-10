@@ -1,5 +1,4 @@
 # ECON627 Spring 2020 : Econometric Theory II
-******
 
 ### Course webpage [here](https://faculty.arts.ubc.ca/vmarmer/econ627/index.htm)
 [![Build Status](https://travis-ci.com/paulcorcuera/ECON627_2020.jl.svg?branch=master)](https://travis-ci.com/paulcorcuera/ECON627_2020.jl)
