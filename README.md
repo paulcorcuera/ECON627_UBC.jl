@@ -14,6 +14,7 @@ and write the following:
 ``
 cd folder/to/clone-into/  
 ``
+
 ``
 git clone https://github.com/paulcorcuera/ECON627_2020.jl.git
 ``
