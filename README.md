@@ -12,6 +12,7 @@ If you want to clone this repository into a local directory in your computer, yo
 and write the following:
 
 ``
-cd folder/to/clone-into/
+cd folder/to/clone-into/  
+
 git clone https://github.com/paulcorcuera/ECON627_2020.jl.git
 ``
