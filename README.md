@@ -1,9 +1,7 @@
-# ECON627 Spring 2020 : Econometric Theory II
+# ECON627: Econometric Theory II 
 
-### [Course Webpage](https://faculty.arts.ubc.ca/vmarmer/econ627/index.htm)
-
-[![Build Status](https://travis-ci.com/paulcorcuera/ECON627_2020.jl.svg?branch=master)](https://travis-ci.com/paulcorcuera/ECON627_2020.jl)
-[![Codecov](https://codecov.io/gh/paulcorcuera/ECON627_2020.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/paulcorcuera/ECON627_2020.jl)
+[![Build Status](https://travis-ci.com/paulcorcuera/ECON627_UBC.jl.svg?branch=master)](https://travis-ci.com/paulcorcuera/ECON627_2020.jl)
+[![Codecov](https://codecov.io/gh/paulcorcuera/ECON627_UBC.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/paulcorcuera/ECON627_UBC.jl)
 
 This will store the Jupyter Notebooks that will be used in the tutorial sessions every week. 
 
@@ -13,11 +11,11 @@ If you want to clone this repository into a local directory in your computer, yo
 and write the following:
 
 ``
-cd desired_folder
+cd desired_destination_folder
 ``
 
 ``
-git clone https://github.com/paulcorcuera/ECON627.jl.git
+git clone https://github.com/paulcorcuera/ECON627_UBC.jl.git
 ``
 
-You can find the Jupyter files in the [notebooks folder](https://github.com/paulcorcuera/ECON627.jl/tree/master/notebooks).
+You can find the Jupyter files in the [notebooks folder](https://github.com/paulcorcuera/ECON627_UBC.jl/tree/master/notebooks).
