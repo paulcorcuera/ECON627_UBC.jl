@@ -1,8 +1,5 @@
 # TA Notes for ECON627: Econometric Theory II 
 
-[![Build Status](https://travis-ci.com/paulcorcuera/ECON627_UBC.jl.svg?branch=master)](https://travis-ci.com/paulcorcuera/ECON627_UBC.jl)
-[![Codecov](https://codecov.io/gh/paulcorcuera/ECON627_UBC.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/paulcorcuera/ECON627_UBC.jl)
-
 This will store the Jupyter Notebooks that will be used in the tutorial sessions every week. 
 
 ### Cloning Repo
