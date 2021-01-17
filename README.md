@@ -13,11 +13,11 @@ If you want to clone this repository into a local directory in your computer, yo
 and write the following:
 
 ``
-cd folder/to/clone-into/  
+cd desired_folder
 ``
 
 ``
-git clone https://github.com/paulcorcuera/ECON627_2020.jl.git
+git clone https://github.com/paulcorcuera/ECON627.jl.git
 ``
 
-You can find the Jupyter files in the [notebooks folder](https://github.com/paulcorcuera/ECON627_2020.jl/tree/master/notebooks).
+You can find the Jupyter files in the [notebooks folder](https://github.com/paulcorcuera/ECON627.jl/tree/master/notebooks).
