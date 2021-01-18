@@ -1,0 +1,259 @@
+% Define new binary operators
+
+
+%Comandi che riteniamo utili, presi da Abadir_Magnus.
+
+% operatornames
+\newcommand{\bias}{\operatorname{bias}}
+\newcommand{\col}{\operatorname{col}}
+\newcommand{\corr}{\operatorname{corr}}
+\newcommand{\cov}{\operatorname{cov}}
+\newcommand{\dg}{\operatorname{dg}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\E}{\operatorname{E}}
+\newcommand{\etr}{\operatorname{etr}}
+\newcommand{\kur}{\operatorname{kur}}
+%\newcommand{\median}{\operatorname{med}}
+\newcommand{\MSE}{\operatorname{MSE}}
+\newcommand{\plim}{\operatorname{plim}}
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\var}{\operatorname{var}}
+\renewcommand{\vec}{\operatorname{vec}}
+\newcommand{\vech}{\operatorname{vech}}
+
+\newcommand{\SC}{\mathbb{C}}
+\newcommand{\SN}{\mathbb{N}}
+\newcommand{\SQ}{\mathbb{Q}}
+\newcommand{\SR}{\mathbb{R}}
+\newcommand{\SZ}{\mathbb{Z}}
+%
+% calligraphic capital letters
+\newcommand{\calA}{\mathcal{A}}
+\newcommand{\calB}{\mathcal{B}}
+\newcommand{\calC}{\mathcal{C}}
+\newcommand{\calD}{\mathcal{D}}
+\newcommand{\calE}{\mathcal{E}}
+\newcommand{\calF}{\mathcal{F}}
+\newcommand{\calG}{\mathcal{G}}
+\newcommand{\calH}{\mathcal{H}}
+\newcommand{\calI}{\mathcal{I}}
+\newcommand{\calJ}{\mathcal{J}}
+\newcommand{\calK}{\mathcal{K}}
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\calM}{\mathcal{M}}
+\newcommand{\calN}{\mathcal{N}}
+\newcommand{\calO}{\mathcal{O}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\calQ}{\mathcal{Q}}
+\newcommand{\calR}{\mathcal{R}}
+\newcommand{\calS}{\mathcal{S}}
+\newcommand{\calT}{\mathcal{T}}
+\newcommand{\calU}{\mathcal{U}}
+\newcommand{\calV}{\mathcal{V}}
+\newcommand{\calW}{\mathcal{W}}
+\newcommand{\calX}{\mathcal{X}}
+\newcommand{\calY}{\mathcal{Y}}
+\newcommand{\calZ}{\mathcal{Z}}
+%
+% bold lowercase and capital letters for vectors (v) and matrices (m)
+\newcommand{\mA}{\bm A}
+\newcommand{\va}{\bm a}
+\newcommand{\mB}{\bm B}
+\newcommand{\vb}{\bm b}
+\newcommand{\mC}{\bm C}
+\newcommand{\vc}{\bm c}
+\newcommand{\mD}{\bm D}
+\newcommand{\vd}{\bm d}
+\newcommand{\mE}{\bm E}
+\newcommand{\ve}{\bm e}
+\newcommand{\mF}{\bm F}
+\newcommand{\vf}{\bm f}
+\newcommand{\mG}{\bm G}
+\newcommand{\vg}{\bm g}
+\newcommand{\mH}{\bm H}
+\newcommand{\vh}{\bm h}
+\newcommand{\mI}{\bm I}
+\newcommand{\vi}{\bm i}
+\newcommand{\mJ}{\bm J}
+\newcommand{\vj}{\bm j}
+\newcommand{\mK}{\bm K}
+\newcommand{\vk}{\bm k}
+\newcommand{\mL}{\bm L}
+\newcommand{\vl}{\bm l}
+\newcommand{\mM}{\bm M}
+\newcommand{\vm}{\bm m}
+\newcommand{\mN}{\bm N}
+\newcommand{\vn}{\bm n}
+\newcommand{\mO}{\bm O}
+\newcommand{\vo}{\bm o}
+\newcommand{\mP}{\bm P}
+\newcommand{\vp}{\bm p}
+\newcommand{\mQ}{\bm Q}
+\newcommand{\vq}{\bm q}
+\newcommand{\mR}{\bm R}
+\newcommand{\vr}{\bm r}
+\newcommand{\mS}{\bm S}
+\newcommand{\vs}{\bm s}
+\newcommand{\mT}{\bm T}
+\newcommand{\vt}{\bm t}
+\newcommand{\mU}{\bm U}
+\newcommand{\vu}{\bm u}
+\newcommand{\mV}{\bm V}
+\newcommand{\vv}{\bm v}
+\newcommand{\mW}{\bm W}
+\newcommand{\vw}{\bm w}
+\newcommand{\mX}{\bm X}
+\newcommand{\vx}{\bm x}
+\newcommand{\mY}{\bm Y}
+\newcommand{\vy}{\bm y}
+\newcommand{\mZ}{\bm Z}
+\newcommand{\vz}{\bm z}
+%
+% bold Greek lowercase letters for vectors (v)
+\newcommand{\valpha}{\bm \alpha}
+\newcommand{\vbeta}{\bm \beta}
+\newcommand{\vgamma}{\bm \gamma}
+\newcommand{\vdelta}{\bm \delta}
+\newcommand{\vepsi}{\bm \epsi}
+\newcommand{\vvarepsilon}{\bm \varepsilon}
+\newcommand{\vzeta}{\bm \zeta}
+\newcommand{\veta}{\bm \eta}
+\newcommand{\vtheta}{\bm \theta}
+\newcommand{\viota}{\bm \iota}
+\newcommand{\vkappa}{\bm \kappa}
+\newcommand{\vlambda}{\bm \lambda}
+\newcommand{\vmu}{\bm \mu}
+\newcommand{\vnu}{\bm \nu}
+\newcommand{\vxi}{\bm \xi}
+\newcommand{\vpi}{\bm \pi}
+\newcommand{\vrho}{\bm \rho}
+\newcommand{\vsigma}{\bm \sigma}
+\newcommand{\vtau}{\bm \tau}
+\newcommand{\vupsilon}{\bm \upsilon}
+\newcommand{\vphi}{\bm \phi}
+\newcommand{\vchi}{\bm \chi}
+\newcommand{\vpsi}{\bm \psi}
+\newcommand{\vomega}{\bm \omega}
+%
+% bold Greek capital letters for matrices (m)
+\newcommand{\mGamma}{\bm \Gamma}
+\newcommand{\mDelta}{\bm \varDelta}
+\newcommand{\mTheta}{\bm \varTheta}
+\newcommand{\mLambda}{\bm \varLambda}
+\newcommand{\mXi}{\bm \varXi}
+\newcommand{\mPi}{\bm \varPi}
+\newcommand{\mSigma}{\bm \varSigma}
+\newcommand{\mUpsilon}{\bm \varUpsilon}
+\newcommand{\mPhi}{\bm \varPhi}
+\newcommand{\mPsi}{\bm \varPsi}
+\newcommand{\mOmega}{\bm \varOmega}
+
+
+%Per i limiti
+\newcommand{\longto}{\longrightarrow}
+\newcommand{\pto}{\stackrel{p}{\longrightarrow}}
+\newcommand{\dto}{\stackrel{d}{\longrightarrow}}
+\newcommand{\wto}{\stackrel{w}{\longrightarrow}}
+
+\def\convas{\mathbin{\buildrel{\rm as}\over\rightarrow}}
+% \def\convd{\mathbin{\buildrel{\rm d}\over\rightarrow}}
+\def\convd{\mathbin{\Rightarrow}}
+\def\convms{\mathbin{\buildrel{\rm ms}\over\rightarrow}}
+\def\convp{\mathbin{\buildrel{\rm p}\over\rightarrow}}
+\def\convr{\mathbin{\buildrel{r{\rm th}}\over\rightarrow}}
+\def\convs{\mathbin{\buildrel{s{\rm th}}\over\rightarrow}}
+
+% Abbreviated commands (FP+RS)
+
+\newcommand {\nn}{\nonumber}
+\newcommand{\ba}{\begin{eqnarray}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ban}{\begin{eqnarray*}}
+\newcommand{\ea}{\end{eqnarray}}
+\newcommand{\ean}{\end{eqnarray*}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bw}{\hat{\beta}}
+\newcommand{\smn}{\dfrac{1}{n}\sum_{i=1}^{n}}
+\newcommand{\gammah}{\hat{\gamma}_{iT}}
+\newcommand{\psih}{\hat{\psi}_{iT}}
+\newcommand{\asy}{as $n\stackrel{}{\rightarrow} \infty$ with $T$ fixed}
+\newcommand{\asyy}{$n\stackrel{}{\rightarrow} \infty$ with $T$ fixed}
+\newcommand{\frecciap}{\stackrel{p}{\rightarrow}}
+\newcommand{\freccia}{\stackrel{}{\rightarrow}}
+\newcommand{\bws}{\hat{\beta}_{w,b,a}}
+\newcommand{\borr}{\hat{\beta}_{orr}}
+% Define new mathematical operators (fP)
+\def\1{\mathop{1_{}}\nolimits}
+\def\AMSE{\mathop{\rm AMSE}\nolimits}
+\def\AR{\mathop{\rm AR}\nolimits}
+\def\ARCH{\mathop{\rm ARCH}\nolimits}
+\def\ARE{\mathop{\rm ARE}\nolimits}
+\def\ARIMA{\mathop{\rm ARIMA}\nolimits}
+\def\ARMA{\mathop{\rm ARMA}\nolimits}
+\def\argmax{\mathop{\rm argmax}}
+\def\argmin{\mathop{\rm argmin}}
+\def\AVh{\mathop{\widehat{\rm AV}}\nolimits}
+\def\AV{\mathop{\rm AV}\nolimits}
+\def\Bias{\mathop{\rm Bias}\nolimits}
+\def\Biash{\mathop{\widehat{\rm Bias}}\nolimits}
+\def\Biast{\mathop{{\rm Bias}_\theta}\nolimits}
+\def\CI{\mathop{\rm CI}\nolimits}
+\def\Corr{\mathop{\rm Corr}\nolimits}
+\def\Cov{\mathop{\rm Cov}\nolimits}
+\def\CovF{\mathop{{\rm Cov}_F}\nolimits}
+\def\CovFh{\mathop{{\rm Cov}_{\hat{F}}}\nolimits}
+\def\Covh{\mathop{\widehat{\rm Cov}}\nolimits}
+\def\Covt{\mathop{{\rm Cov}_\theta}\nolimits}
+\def\diag{\mathop{{\rm diag}}\nolimits}
+\def\CV{\mathop{\rm CV}\nolimits}
+\def\dh{\hat\delta}
+\def\E{\mathop{{\rm E}_{}}\nolimits}
+\def\EIF{\mathop{\rm EIF}\nolimits}
+\def\Et{\mathop{{\rm E}_\theta}\nolimits}
+\def\EF{\mathop{{\rm E}_F}\nolimits}
+\def\EFh{\mathop{{\rm E}_{\hat{F}}}\nolimits}
+\def\EFn{\mathop{{\rm E}_{F_n}}\nolimits}
+\def\Eo{\mathop{{\rm E}_0}\nolimits}
+\def\Et{\mathop{{\rm E}_\theta}\nolimits}
+\def\GARCH{\mathop{\rm GARCH}\nolimits}
+\def\IF{\mathop{\rm IF}\nolimits}
+\def\MA{\mathop{\rm MA}\nolimits}
+\def\MAD{\mathop{\rm MAD}\nolimits}
+\def\Med{\mathop{\rm Med}\nolimits}
+\def\MISE{\mathop{\rm MISE}\nolimits}
+\def\MSD{\mathop{\rm MSD}\nolimits}
+\def\MSE{\mathop{\rm MSE}\nolimits}
+\def\MSEt{\mathop{{\rm MSE}_\theta}\nolimits}
+\def\plim{\mathop{{\rm plim}_{}}\nolimits}
+\def\PrF{\mathop{\Pr\nolimits_{F}}}
+\def\PrFh{\mathop{\Pr\nolimits_{\hat{F}}}}
+\def\Prh{\mathop{\widehat{\Pr}}\nolimits}
+\def\Prt{\mathop{\Pr\nolimits_\theta}}
+\def\rank{\mathop{\rm rank}\nolimits}
+\def\SE{\mathop{\rm SE}\nolimits}
+\def\SEh{\mathop{\widehat{\rm SE}}\nolimits}
+\def\sign{\mathop{\rm sign}\nolimits}
+\def\tan{\mathop{\rm tan}\nolimits}
+\def\th{\hat\theta}
+\def\trace{\mathop{\rm tr}\nolimits}
+\def\Var{\mathop{\rm Var}\nolimits}
+\def\VarF{\mathop{{\rm Var}_F}\nolimits}
+\def\Varh{\mathop{\widehat{\rm Var}}\nolimits}
+\def\VarFh{\mathop{{\rm Var}_{\hat{F}}}\nolimits}
+\def\Vart{\mathop{{\rm Var}_\theta}\nolimits}
+\def\WN{\mathop{\rm WN}\nolimits}
+
+% Redefined LATEX commands
+
+\renewcommand{\Im}{I_{m}}
+% \Im redefines command for script I
+\renewcommand{\mid}{\,|\,}
+\renewcommand{\theenumii}{\theenumi.\arabic{enumii}}
+% \renewcommand{\tt}{\tilde\theta}
+\renewcommand{\to}{\theta_{0}}
+\renewcommand{\u}{{\bf u}}
+\renewcommand{\vec}{{\rm vec}\,}
+\renewcommand{\Xi}{X_{i}}
+% \Xi redefines command for upper-case xi
