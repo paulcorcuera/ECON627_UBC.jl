@@ -15,4 +15,4 @@ cd desired_destination_folder
 git clone https://github.com/paulcorcuera/ECON627_UBC.jl.git
 ``
 
-You can find the Jupyter files in the [notebooks folder](https://github.com/paulcorcuera/ECON627_UBC.jl/tree/master/notebooks).
+You can find the Jupyter files in the [notebooks folder](https://github.com/paulcorcuera/ECON627_UBC.jl/tree/master/jupyter_notebooks).
