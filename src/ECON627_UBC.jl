@@ -1,4 +1,4 @@
-module ECON627_2020
+module ECON627_UBC
 
 greet() = print("Hello World!")
 
