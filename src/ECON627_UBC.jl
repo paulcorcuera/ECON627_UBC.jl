@@ -1,5 +1,7 @@
 module ECON627_UBC
 
+export ols, Ω, GMM, TSGMM, TSLS, nls, NLGMM, MLE
+
 #This will contain all functions related to estimation and standard error calculation for the UBC course ECON627
 
 
@@ -151,20 +153,29 @@ function MLE(Y,X,LogL)
 end
 
 # Minimum Distance 
-function MD(π, Y, X, Z,g,W)
+#function MD(π, Y, X, Z,g,W)
     # π is the dependent variable you want to fit 
     # g is a function of the data, this is a FUNCTION
-    Q = (π-g(Y,X,Z))'*W*(π-g(Y,X,Z))
+#    Q = (π-g(Y,X,Z))'*W*(π-g(Y,X,Z))
 
-    #first step GMM
-    res=optimize(θ->Q(θ,Y,X,Z,W),[0.0],NewtonTrustRegion(); autodiff = :forward)
-    b=Optim.minimizer(res)
+    #Minimizer
+#    res=optimize(θ->Q(θ,Y,X,Z,W),[0.0],NewtonTrustRegion(); autodiff = :forward)
+#    bhat=Optim.minimizer(res)
     
+    # Get asyvar, we compute the gradient of f with respect to b
+#    v = map(i -> ForwardDiff.gradient(θ->Q(θ,Y,X,Z,W), bhat), 1:n)
+#    md = vcat(v'...)
+
+#    me = md .* r_hat; mmd = md' * md
+#    avar = mmd \ (me' * me) / mmd
+
+#    se = sqrt.(diag(avar));
+
     #Standard Error
-    avar=ForwardDiff.hessian(θ->Q(θ,Y,X,Z,W),b)
-    se=sqrt.( diag(inv(avar))/n)
-    
-    return (b = bhat, se = se )
-end
+#    avar=ForwardDiff.hessian(θ->Q(θ,Y,X,Z,W),b)
+#    se=sqrt.( diag(inv(avar))/n)
+
+#    return (b = bhat, se = se )
+#end
 
 end # module
