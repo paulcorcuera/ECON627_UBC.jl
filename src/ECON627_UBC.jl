@@ -1,20 +1,24 @@
 module ECON627_UBC
 
+using Random, Parameters, LinearAlgebra, Optim, ForwardDiff
+
+
 export ols, Ω, GMM, TSGMM, TSLS, nls, NLGMM, MLE
 
 #This will contain all functions related to estimation and standard error calculation for the UBC course ECON627
 
 
-using Random, Parameters, LinearAlgebra, Optim, ForwardDiff
 
 ########## Linear Models #####################
 
 # Ordinary Least Squares 
 function ols(X,Y)
+    n = length(Y)
+
     b = (X'*X)\(X'*Y)
     res = Y - X*b
     Xres = X.*res
-    avar = (X'*X)\(X'*Xres)/(X'*X)
+    avar = (X'*X)\(Xres'*Xres)/(X'*X)
 
     se = sqrt.(diag(avar)/n)
 
@@ -32,7 +36,7 @@ end
 
 # Linear GMM 
 function GMM(W, Y, X, Z)
-    
+    n = length(Y)
     b=(X'*Z*W*Z'*X)\(X'*Z*W*Z'*Y)
     Γ = Z'*X/n
     omega = Ω(Y-X*b,Z)
@@ -70,6 +74,7 @@ end
 
 # Two Stage Least Squares 
 function TSLS(Y, X, Z)
+    n = length(Y)
     W = inv(Z'*Z)
 
     b =(X'*Z*W*Z'*X)\(X'*Z*W*Z'*Y)
@@ -125,7 +130,7 @@ end
 # Non-linear GMM 
 function NLGMM(Y,X,Z,Q)
     #Q is the criterion function, this is a FUNCTION
-    
+    n = length(Y)
     #first step GMM
     res=optimize(θ->Q(θ,Y,X,Z,W),[0.0],NewtonTrustRegion(); autodiff = :forward)
     b=Optim.minimizer(res)
