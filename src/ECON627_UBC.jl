@@ -15,11 +15,14 @@ export ols, Ω, GMM, TSGMM, TSLS, nls, NLGMM, MLE
 function ols(X,Y)
     n = length(Y)
 
-    θhat = (X'*X)\(X'*Y)
+    xx = X'*X
+    xy = X'*Y
+    θhat = xx\xy
     res = Y - X*θhat
-    Xres = X.*res
 
-    avar = n*(X'*X)\(Xres'*Xres)/(X'*X)
+
+    xr = X.*res
+    avar = n*(xx \ (xr' * xr) / xx)
 
     se = sqrt.(diag(avar))
 
@@ -43,7 +46,7 @@ function GMM(W, Y, X, Z)
     omega = Ω(Y-X*θhat,Z)
 
     avar = (Γ'*W*Γ)\(Γ'*W*omega*W*Γ)/(Γ'*W*Γ)
-    se = sqrt.(diag(avar)/n)
+    se = sqrt.(diag(avar))
     
     return (θhat = θhat , se = se)
 end
@@ -58,16 +61,16 @@ function TSGMM(Y,X,Z)
     PZ = Z*( (Z'*Z)\Z' )
     β2SLS = (X'*PZ*X)\(X'*PZ*Y)
     Q = Z'*X/n
-    Ω1 = Ω(Y-β2SLS*X,Z)
+    Ω1 = Ω(Y-X*β2SLS,Z)
     
     # Two-step efficient GMM
     WGMM=inv(Ω1);
     θhat=(X'*Z*WGMM*Z'*X)\(X'*Z*WGMM*Z'*Y)
-    Ω2=Ω(Y-θhat*X,Z)
+    Ω2=Ω(Y-X*θhat,Z)
     WGMM=inv(Ω2)
 
-    avar = inv(Q'*WGMM*Q)/n
-    se=sqrt.(avar)
+    avar = inv(Q'*WGMM*Q)
+    se=sqrt.(diag(avar))
     
     return  (θhat = θhat , se = se)
     
@@ -80,9 +83,11 @@ function TSLS(Y, X, Z)
 
     θhat =(X'*Z*W*Z'*X)\(X'*Z*W*Z'*Y)
     Γ = Z'*X/n
+
+    omega = Ω(Y-X*θhat,Z)
     
     avar = (Γ'*W*Γ)\(Γ'*W*omega*W*Γ)/(Γ'*W*Γ)
-    se = sqrt.(diag(avar)/n)
+    se = sqrt.(diag(avar))
     
     return (θhat = θhat , se = se)
 end
@@ -94,7 +99,7 @@ function nls(f, y, x )
 
     n = size(x, 1)
     # Objective function
-    obj = b -> sum((y - f(x, b)) .^ 2);
+    obj = b -> sum((y - f(x, b)) .^ 2) ;
     
     #Initial Value 
     beta0 = zeros(size(x,2))
@@ -117,8 +122,8 @@ function nls(f, y, x )
     v = map(i -> ForwardDiff.gradient(z -> f(x[i, :]', z), θhat), 1:n)
     md = vcat(v'...)
 
-    me = md .* r_hat; mmd = md' * md
-    avar = mmd \ (me' * me) / mmd
+    me = md .* r_hat  ; mmd = md' * md
+    avar = ( mmd/n) \ (me' * me /n) / (mmd/n)
 
     se = sqrt.(diag(avar));
 
@@ -129,16 +134,44 @@ end
 
 
 # Non-linear GMM 
-function NLGMM(Y,X,Z,Q)
-    #Q is the criterion function, this is a FUNCTION
+function NLGMM(Y,X,Z,W,g)
+    #g is the moment condition function, this is a FUNCTION
     n = length(Y)
-    #first step GMM
+ 
+    gl = (y,x,z,θ) -> g(y,x,z,θ)/n
+
+    function gvec(Y,X,Z,θ)
+        v = map(i -> gl(Y[i],X[i, :]',Z[i,:]',  θ), 1:n)
+        v = sum([ v[i] for i in 1:n  ])
+        v = [v...]
+        return v
+    end
+    Q = θ -> transpose(gvec(Y,X,Z,θ)) * W * gvec(Y,X,Z,θ)
+ 
     res=optimize(θ->Q(θ,Y,X,Z,W),[0.0],NewtonTrustRegion(); autodiff = :forward)
+
+    #Initial Value 
+    initval = zeros(size(X,2))
+    td = TwiceDifferentiable(Q, initval ; autodiff = :forward)
+    #Other option is to use trust region
+    # res=optimize(θ->Q(θ,Y,X,Z,W),initval,NewtonTrustRegion(); autodiff = :forward)
+    res = optimize(td, initval, Newton(), Optim.Options() )
     θhat=Optim.minimizer(res)
     
     #Standard Error
-    avar=ForwardDiff.hessian(θ->Q(θ,Y,X,Z,W),θhat)
-    se=sqrt.( diag(inv(avar))/n)
+    # To get asyvar, we compute the gradient of g with respect to theta
+    # Jacobian will yield dg(W,θ)/dθ' (lxk matrix)
+    v = map(i -> ForwardDiff.jacobian(θ -> gl(Y[i],X[i, :]',Z[i,:]', θ), θhat), 1:n)
+    dg = sum([ v[i] for i in 1:n ])
+   
+    v = map(i -> gl(Y[i],X[i, :]',Z[i,:]', θhat), 1:n)
+    outerprod = sum([ [v[i]...]*[v[i]...]' for i in 1:n ])
+    
+    mmd = dg' *W* dg
+    avar = (mmd) \ dg' *W*(outerprod)*W*dg / (mmd)
+
+    se = sqrt.(diag(avar))
+
     
     return (θhat = θhat, se = se )
 end
@@ -146,14 +179,16 @@ end
 
 # Maximum Likelihood  
 function MLE(Y,X,LogL)
-    #LogL is a function of the data, this is a FUNCTION
+    #LogL is a function of the data, this is a FUNCTION of b, Y, X 
+    initval = zeros(size(X,2))
 
-    res=optimize(b->LogL(b,Y,X),[0.0;0.0;],LBFGS();autodiff=:forward)
+    res=optimize(b->LogL(b,X,Y),initval,LBFGS();autodiff=:forward)
     θhat=Optim.minimizer(res)
 
 
-    avar = ForwardDiff.hessian(b -> LogL(b, Y, X), θhat )
-    se =  sqrt.(diag(inv(avar)))
+    avar = ForwardDiff.hessian(b -> LogL(b, X,Y), θhat )
+    avar = inv(avar)
+    se =  sqrt.(diag(avar))
 
     return (θhat = θhat, se = se )
 end
